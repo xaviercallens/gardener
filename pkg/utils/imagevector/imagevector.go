@@ -138,7 +138,19 @@ func (v ImageVector) FindImages(names []string, k8sVersionRuntime, k8sVersionTar
 func (i *ImageSource) ToImage(targetK8sVersion string) *Image {
 	tag := i.Tag
 	if tag == "" {
-		tag = fmt.Sprintf("v%s", strings.TrimLeft(targetK8sVersion, "v"))
+		// TODO: remove me below :TODO
+		k8sVersionLessThan114, err := utils.CompareVersions(targetK8sVersion, "<", "1.14")
+		if err != nil {
+			return nil
+		}
+		if k8sVersionLessThan114 {
+			tag = fmt.Sprintf("v%s", strings.TrimLeft(targetK8sVersion, "v"))
+		} else {
+			tag = fmt.Sprintf("v%s-rc.1", strings.TrimLeft(targetK8sVersion, "v"))
+		}
+		// TODO: remove be above :TODO
+
+		//tag = fmt.Sprintf("v%s", strings.TrimLeft(targetK8sVersion, "v"))
 	}
 
 	return &Image{
