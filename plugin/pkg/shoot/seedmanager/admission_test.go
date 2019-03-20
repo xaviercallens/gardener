@@ -109,7 +109,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).ToNot(HaveOccurred())
 			})
@@ -118,7 +118,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).ToNot(HaveOccurred())
 			})
@@ -129,7 +129,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())
@@ -142,7 +142,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).ToNot(HaveOccurred())
 			})
@@ -153,7 +153,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).ToNot(HaveOccurred())
 			})
@@ -167,7 +167,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())
@@ -183,7 +183,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).NotTo(HaveOccurred())
 				Expect(*shoot.Spec.Cloud.Seed).To(Equal(seedName))
@@ -204,7 +204,7 @@ var _ = Describe("seedmanager", func() {
 
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).NotTo(HaveOccurred())
 				Expect(*shoot.Spec.Cloud.Seed).To(Equal(secondSeed.Name))
@@ -220,7 +220,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())
@@ -233,7 +233,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())
@@ -246,7 +246,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())
@@ -264,7 +264,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())
@@ -277,7 +277,7 @@ var _ = Describe("seedmanager", func() {
 				gardenInformerFactory.Garden().InternalVersion().Seeds().Informer().GetStore().Add(&seed)
 				attrs := admission.NewAttributesRecord(&shoot, nil, garden.Kind("Shoot").WithVersion("version"), shoot.Namespace, shoot.Name, garden.Resource("shoots").WithVersion("version"), "", admission.Create, false, nil)
 
-				err := admissionHandler.Admit(attrs)
+				err := admissionHandler.Admit(attrs, nil)
 
 				Expect(err).To(HaveOccurred())
 				Expect(apierrors.IsForbidden(err)).To(BeTrue())

@@ -26,7 +26,7 @@ import (
 	informers "github.com/gardener/gardener/pkg/client/garden/informers/internalversion"
 	listers "github.com/gardener/gardener/pkg/client/garden/listers/garden/internalversion"
 	"github.com/gardener/gardener/pkg/operation/common"
-	"k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/labels"
@@ -127,7 +127,7 @@ func (q *QuotaValidator) ValidateInitialization() error {
 }
 
 // Admit checks that the requested Shoot resources are within the quota limits.
-func (q *QuotaValidator) Admit(a admission.Attributes) error {
+func (q *QuotaValidator) Admit(a admission.Attributes, o admission.ObjectInterfaces) error {
 	// Wait until the caches have been synced
 	if q.readyFunc == nil {
 		q.AssignReadyFunc(func() bool {
